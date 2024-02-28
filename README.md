@@ -1,29 +1,16 @@
-# Testes automatizados com Cypress - Básico
 
-👋 Seja bem-vindo(a)!
+## Descrição
 
-É muito bom tê-lo(a) aqui. Tenho certeza que você vai adorar este curso. ❤️
+Este projeto tem como objetivo colocar em prática os conhecimentos básicos sobre Cypress aprendidos no curso _Testes automatizados com Cypress - Básico_, do **Walmyr Filho**. Todos os testes foram feitos em cima de uma pequena aplicação que simula um sistema de atendimento ao cliente, o CAC-TAT. 
 
-## O que você vai aprender
+## Pré-requisitos
 
-Durante o curso de testes automatizados com Cypress (básico), você vai aprender:
+Para rodar este projeto, é necesssário ter instalado em sua máquina o _Node.js_ e _npm_, além do _Cypress_. As versão utilizadas desses programas foram 18.18.1, 9.8.1 e 9.5.1, respectivamente.
 
-- Como configurar um projeto Cypress do zero
-- Como visitar páginas locais e remotas
-- Como lidar com os elementos mais comuns encontrados em aplicações web
-- Como testar _upload_ de arquivos
-- Como realizar as mais diversas verificações de resultados esperados
-- Como criar comandos customizados
-- Como lidar com links que abrem em outra aba do navegador
-- Como rodar testes simulando as dimensões de um dispositivo móvel
-- Como resolver os mesmos problemas de diferentes formas, conhecendo a [API do Cypress](https://docs.cypress.io/api/table-of-contents)
-- Como executar os testes em um _pipeline_ de integração contínua sempre que mudanças ocorrerem no código da aplicação (ou dos testes)
-- Como criar uma documentação mínima para seu projeto de testes automatizados
+## Instalação
 
-## Vamos começar?
+Para instalar as dependências deste projeto, é necessário rodar o commando `npm install`.
 
-Vá para a seção [estrutura do curso](./lessons/_course-structure_.md).
+## Testes
 
-___
-
-Este é mais um curso da [**Escola Talking About Testing**](https://udemy.com/user/walmyr).
+Para rodar os testes deste projeto, é possível executar os seguintes comandos: `cy:open`, para abrir o Cypress no modo interativo; e `cy:run`, para rodá-los no modo headless. Ainda, é possível simular dispositivos mobile através dos comandos `cy:open:viewport` e `cy:open:viewport:headless`, que alteram a _viewport_ da aplicação.
