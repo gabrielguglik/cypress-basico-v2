@@ -1,4 +1,6 @@
 describe('Central de Atendimento ao Cliente TAT', function() {
+    const three_sec_in_ms = 3000
+
     beforeEach(() => {
         cy.visit('./src/index.html')
     })
@@ -32,8 +34,15 @@ describe('Central de Atendimento ao Cliente TAT', function() {
             .should('be.visible')
             .click()
 
+        cy.clock()
+
         cy.get('span[class="success"]') // poderia utlizar apenas cy.get('.success') para representar qualquer elemento que tenha essa classe (já que é o único)
             .should('be.visible')
+
+        cy.tick(three_sec_in_ms)
+        
+        cy.get('span[class="success"]')
+         .should('not.be.visible')
     })
 
     it('verifica se é exibido mensagem de erro ao submeter o formulário com um email com formatação inválida', function() {
@@ -61,8 +70,15 @@ describe('Central de Atendimento ao Cliente TAT', function() {
             .should('be.visible')
             .click()
 
+        cy.clock()
+
         cy.get('span[class="error"]')
             .should('be.visible')
+
+        cy.tick(three_sec_in_ms)
+
+        cy.get('span[class="error"]')
+            .should('not.be.visible')
     })
 
     it('verifica se o campo de telefone aceita apenas valores numéricos', function() {
@@ -101,8 +117,15 @@ describe('Central de Atendimento ao Cliente TAT', function() {
             .should('be.visible')
             .click()
 
+        cy.clock()
+
         cy.get('span[class="error"]')
             .should('be.visible')
+
+        cy.tick(three_sec_in_ms)
+
+        cy.get('span[class="error"]')
+            .should('not.be.visible')
     })
 
     it('preenche e limpa os campos nome, sobrenome, email e telefone e verifica se foram limpos', function() {
@@ -140,6 +163,13 @@ describe('Central de Atendimento ao Cliente TAT', function() {
             .should('be.visible')
             .click()
 
+        cy.clock()
+
+        cy.get('span[class="error"]')
+            .should('be.visible')
+
+        cy.tick(three_sec_in_ms)
+
         cy.get('span[class="error"]')
             .should('be.visible')
     })
@@ -147,8 +177,15 @@ describe('Central de Atendimento ao Cliente TAT', function() {
     it('verifica se é enviado o formuário com sucesso usando um comando customizado', function() {
         cy.fillMandatoryFieldsAndSubmit()
 
+        cy.clock()
+
         cy.get('span[class="success"]')
             .should('be.visible')
+
+        cy.tick(three_sec_in_ms)
+
+        cy.get('span[class="success"]')
+            .should('not.be.visible')
     })
 
     it('verifica se a opção realmente é selecionada quando seleciona o produto "Youtube" por seu texto', function() {
@@ -237,6 +274,60 @@ describe('Central de Atendimento ao Cliente TAT', function() {
             .click()
 
         cy.title().should('eq', 'Central de Atendimento ao Cliente TAT - Política de privacidade')
+    })
+
+    it('verifica se exibe e esconde as mensagens de sucesso e erro usando o .invoke()', function() {
+        cy.get('.success')
+            .should('not.be.visible')
+            .invoke('show')
+            .should('be.visible')
+            .and('contain', 'Mensagem enviada com sucesso.')
+            .invoke('hide')
+            .should('not.be.visible')
+
+        cy.get('.error')
+            .should('not.be.visible')
+            .invoke('show')
+            .should('be.visible')
+            .and('contain', 'Valide os campos obrigatórios!')
+            .invoke('hide')
+            .should('not.be.visible')
+    })
+
+    it('verifica se preenche a area de texto usando o comando invoke', function() {
+        const longText = Cypress._.repeat('testing', 20)
+
+        cy.get('textarea[name="open-text-area"]')
+            .should('be.visible')
+            .invoke('val', longText)
+            .should('have.value', longText)
+    })
+
+    it('verifica se retornou status, statusText e body ao fazer uma requisição HTTP', function() {
+        cy.request({
+            method: 'GET',
+            url: 'https://cac-tat.s3.eu-central-1.amazonaws.com/index.html'
+        }).then((response) => {
+            expect(response.status).to.equal(200)
+            expect(response.statusText).to.equal('OK')
+            expect(response.body).to.include('CAC TAT')
+        })
+    })
+
+    it('verifica se retornou status, statusText e body ao fazer uma requisição HTTP de outra maneira', function() {
+        cy.request('https://cac-tat.s3.eu-central-1.amazonaws.com/index.html')
+            .should(function (response) {
+                const { status, statusText, body} = response
+                expect(status).to.equal(200)
+                expect(statusText).to.equal('OK')
+                expect(body).to.include('CAC TAT')
+        })
+    })
+
+    it.only('verifica se consegue encontrar o gato na página do sistema', function() {
+        cy.get('#cat')
+            .invoke('show')
+            .should('be.visible')
     })
 
 })
