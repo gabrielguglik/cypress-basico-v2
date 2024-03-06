@@ -1,7 +1,7 @@
 
 ## Descrição
 
-Este projeto tem como objetivo colocar em prática os conhecimentos básicos sobre Cypress aprendidos no curso Testes Automatizados com Cypress - Básico, ministrado por Walmyr Filho. Todos os testes foram desenvolvidos em cima de uma aplicação de exemplo que simula um sistema de atendimento ao cliente, denominado CAC-TAT. 
+Este projeto tem como objetivo colocar em prática os conhecimentos básicos sobre Cypress aprendidos no curso _Testes Automatizados com Cypress - Básico_, ministrado por *Walmyr Filho*. Todos os testes foram desenvolvidos em cima de uma aplicação de exemplo que simula um sistema de atendimento ao cliente, denominado _CAC-TAT_. 
 
 ## Pré-requisitos
 
