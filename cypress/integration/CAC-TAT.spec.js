@@ -1,6 +1,5 @@
 describe('Central de Atendimento ao Cliente TAT', function() {
-    const three_sec_in_ms = 3000
-
+    
     beforeEach(() => {
         cy.visit('./src/index.html')
     })
@@ -9,7 +8,7 @@ describe('Central de Atendimento ao Cliente TAT', function() {
         cy.title().should('eq', 'Central de Atendimento ao Cliente TAT')
     })
 
-    it('preenche os campos obrigatórios, envia o formulário e verifica se é exibido mensagem de sucesso', function() {
+    it('verifica se ao preencher os campos obrigatórios e enviar o formulário é exibido mensagem de sucesso', function() {
         cy.get('input[name="firstName"]')
           .should('be.visible')
           .type('Gabriel', { delay: 0 })
@@ -36,7 +35,7 @@ describe('Central de Atendimento ao Cliente TAT', function() {
 
         cy.clock()
 
-        cy.get('span[class="success"]') // poderia utlizar apenas cy.get('.success') para representar qualquer elemento que tenha essa classe (já que é o único)
+        cy.get('span[class="success"]')
             .should('be.visible')
 
         cy.tick(three_sec_in_ms)
@@ -82,11 +81,13 @@ describe('Central de Atendimento ao Cliente TAT', function() {
     })
 
     it('verifica se o campo de telefone aceita apenas valores numéricos', function() {
-        cy.get('input[id="phone"]') // poderia utlizar apenas cy.get(#phone) (# representa o id)
+        cy.get('input[id="phone"]')
             .should('be.visible')
             .type('ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz')
             .should('have.value', '')
     })
+
+    const three_sec_in_ms = 3000
 
     it('verifica se é exibido mensagem de erro quando o telefone se torna obrigatório mas não é preenchido antes do envio do formulário', function() {
         cy.get('input[name="firstName"]')
@@ -128,7 +129,7 @@ describe('Central de Atendimento ao Cliente TAT', function() {
             .should('not.be.visible')
     })
 
-    it('preenche e limpa os campos nome, sobrenome, email e telefone e verifica se foram limpos', function() {
+    it('verifica se os campos nome, sobrenome, email e telefone foram limpos após preencher e limpar', function() {
         cy.get('input[name="firstName"]')
             .should('be.visible')
             .type('Gabriel')
@@ -231,9 +232,9 @@ describe('Central de Atendimento ao Cliente TAT', function() {
 
     it('verifica se marcou todos os checkbox e se desmarcou o último ', function() {
         cy.get('input[type="checkbox"]')
-            .check() // marca todos os elementos do checkbox pois não foi passado um seletor específico
+            .check()
             .should('be.checked')
-            .last() // seleciona apenas o último elemento a partir daqui
+            .last()
             .uncheck()
             .should('not.be.checked')
     })
@@ -256,7 +257,7 @@ describe('Central de Atendimento ao Cliente TAT', function() {
 
     it('verifica se ao selecionar um arquivo utilizando uma fixture para a qual foi dada um alias, o nome do arquivo é persistido no objeto', function() {
         cy.fixture('example.json')
-            .as('sampleFile') // criado um alias
+            .as('sampleFile')
         cy.get('input[type="file"]#file-upload')
             .selectFile('@sampleFile')
             .should(function($input) {

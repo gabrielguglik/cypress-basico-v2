@@ -22,4 +22,5 @@ Cypress._.times(5, () => {
         cy.contains('Talking About Testing')
             .should('be.visible')
     })
+    
 })

@@ -1,16 +1,29 @@
 
 ## Descrição
 
-Este projeto tem como objetivo colocar em prática os conhecimentos básicos sobre Cypress aprendidos no curso _Testes automatizados com Cypress - Básico_, do **Walmyr Filho**. Todos os testes foram feitos em cima de uma pequena aplicação que simula um sistema de atendimento ao cliente, o CAC-TAT. 
+Este projeto tem como objetivo colocar em prática os conhecimentos básicos sobre Cypress aprendidos no curso Testes Automatizados com Cypress - Básico, ministrado por Walmyr Filho. Todos os testes foram desenvolvidos em cima de uma aplicação de exemplo que simula um sistema de atendimento ao cliente, denominado CAC-TAT. 
 
 ## Pré-requisitos
 
-Para rodar este projeto, é necesssário ter instalado em sua máquina o _Node.js_ e _npm_, além do _Cypress_. As versão utilizadas desses programas foram 18.18.1, 9.8.1 e 9.5.1, respectivamente.
+Para rodar este projeto, é necessário ter o _Node.js_ e o _npm_ instalados em sua máquina. Além disso, o _Cypress_ deve estar configurado. Abaixo estão as versões utilizadas durante o desenvolvimento:
+
+* Node.js: 14.18.1
+* npm: 6.14.15
+* Cypress: 9.5.1
 
 ## Instalação
 
-Para instalar as dependências deste projeto, é necessário rodar o commando `npm install`.
+Para instalar as dependências deste projeto, execute o seguinte comando no terminal: `npm install`.
 
-## Testes
+## Executando os Testes
 
-Para rodar os testes deste projeto, é possível executar os seguintes comandos: `cy:open`, para abrir o Cypress no modo interativo; e `cy:run`, para rodá-los no modo headless. Ainda, é possível simular dispositivos mobile através dos comandos `cy:open:viewport` e `cy:open:viewport:headless`, que alteram a _viewport_ da aplicação.
+Para rodar os testes deste projeto, você pode utilizar os seguintes comandos:
+
+* `npm run cy:open`: Abre o Cypress no modo interativo, permitindo que você selecione e execute os testes manualmente.
+* `npm run cy:run`: Executa os testes no modo headless, sem interface gráfica.
+* `npm run cy:open:viewport`: Abre o Cypress no modo interativo com uma viewport personalizada para simular dispositivos móveis.
+* `npm run cy:open:viewport:headless`: Executa os testes no modo headless com uma viewport personalizada para simular dispositivos móveis.
+
+## Contribuições
+
+Contribuições são bem-vindas! Se você encontrar algum problema ou tiver sugestões de melhorias, sinta-se à vontade para entrar em contato comigo.
